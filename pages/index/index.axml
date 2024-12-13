@@ -1,0 +1,83 @@
+<view class="container">
+  <!--es el contenedor principal, Ocupa toda la pantalla, Define el fondo y el padding en general..-->
+  <view class="progress-header">
+    <!-- Es el cuadro superior azul, contiene la barra de progreso y define el diseño del encabezado-->
+    <view class="progress-title">Formulario de Registro</view>
+    <!--Titulo del texto principal, Define el estilo del texto Formulario de Registro-->
+    <view class="progress-bar">
+      <!--Contenedor de la barra de progreso, Define el area donde se muestra el progreso-->
+      <view class="progress-fill" style="width: {{progress}}%"></view>
+      <!--Parte Interna de la barra que se llena, muestra visualmente el progreso-->
+    </view>
+
+    <view class="progress-text">{{progress}}% Completado</view>
+    <!--Texto que muestra el porcentaje, Ejm 50% Completado-->
+  </view>
+
+  <view class="form-container">
+    <!--Contenedor del formulario, Area blanca donde estan los campos-->
+    <form onSubmit="handleSubmit">
+      <!--Indica que se esta creando un formulario, onSubmit="handleSubmit = un evento que se activa al enviar el formulario-->
+      <view class="form-item">
+        <!--Crea una seccion para cada elemento del formulario, Organiza la etiqueta y su campo de entrada-->
+        <text class="label">Nombre</text>
+        <!--Identifica que informacion se debe ingresar, es el texto que ve el usuario-->
+        <input
+          class="input"
+          value="{{formData.nombre}}"
+          onInput="handleNameInput"
+          placeholder="Ingrese su nombre"
+        />
+      </view>
+
+      <view class="form-item">
+        <!--Organiza la etiqueta y su campo de entrada, crea una seccion para cada elemento del formulario agrupa el labal y el slider-->
+        <text class="label">Edad: {{formData.edad}}</text>
+        <!--text: Muestra el texto, Edad: texto estatico,{{formData.edad}}: Muestra el valor actual del slider que esta configurada en el archivo JS-->
+        <slider
+          value="{{formData.edad}}"
+          min="10"
+          max="100"
+          onChange="handleAgeChange"
+          activeColor="#1677FF"
+          backgroundColor="#E5E7EB"
+        />
+      </view>
+
+      <view class="form-item switch-container">
+        <!-- Contenedor especial para el switch, Organiza el switch y su etiqueta-->
+        <text class="label">Aceptar Términos</text>
+        <!-- Texto que indica al usuario que debe aceptar el switch-->
+        <switch
+          checked="{{formData.aceptaTerminos}}"
+          onChange="handleTermsChange"
+          color="#1677FF"
+        />
+      </view>
+
+      <view a:if="{{error}}" class="error-message">
+        <!--Contenedor del mensaje de error, contiene una condicional que solo muestra el error cuando es tru y se oculta cuando es false-->
+        <icon type="cancel" size="14" color="#FF4D4F" />
+        <!--Componente para mostrar iconos-->
+        <text>Por favor complete todos los campos correctamente</text>
+        <!--Texto del mensaje para el escenario de error-->
+      </view>
+
+      <view a:if="{{submitted}}" class="success-message">
+        <!--Contenedor del mensaje de exito, solo se muestra este mensaje si submitted es true-->
+        <icon type="success" size="14" color="#52C41A" />
+        <!--Componente para mostrar iconos-->
+        <text>¡Formulario enviado exitosamente!</text>
+        <!--Texto del mensaje para el escenario de exitoso-->
+      </view>
+
+      <button
+        form-type="submit"
+        class="submit-button {{progress === 100 ? 'active' : 'disabled'}}"
+        disabled="{{progress !== 100}}"
+      >
+        {{progress === 100 ? 'Enviar' : 'Complete el formulario'}}
+      </button>
+    </form>
+  </view>
+</view>
