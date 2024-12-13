@@ -1,5 +1,6 @@
 import capitalize from '../../dependencies/node_modules/capitalize-the-first-letter'
 
+
 Page({
   data: { //ES UN OBJETO DE TIPO DATA, ALMACENA LOS DATOS NECESARIOS DE LA PAGINA, GUARDA LAS VARIABLES QUE SE DEBEN USAR EN LA INTERFAZ,SE PUEDE ACCEDER DESDE CUALQUIER PARTE DE LA PAGINA Y SE VINCULA DIRECTAMENTE CON EL AXML USANDO {{Variables}}
     formData: { // Es un subobjeto que almacena los datos del formulario, mantiene los 3 campos principales juntos
